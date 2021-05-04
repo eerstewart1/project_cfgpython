@@ -109,12 +109,22 @@ def options_input():
             ghg_avr_list = []
 
             for row in data:
-                greenhousegas = float(row['co2'])
+                greenhousegas = float(row['ghg'])
                 ghg_avr_list.append(greenhousegas)
 
             avr_ghg = sum(ghg_avr_list) / len(ghg_avr_list)
             round_avr_ghg = round((avr_ghg), 2)
             s_print('Average greenhouse gas emissions: {} per economic unit'.format(round_avr_ghg))
+
+            pddata = pd.read_csv('emissions.csv')
+
+            df = pd.DataFrame(pddata)
+
+            avr_df1 = df.drop((df[(df.ghg <= 0.79)]).index)
+            avr_df2 = avr_df1.drop((avr_df1[(avr_df1.ghg >= 0.99)]).index)
+
+            avr_df3 = pd.pivot_table(avr_df2, index=['year', 'industry'], values=['ghg'])
+            print(avr_df3)
 
         avr_ghg_run()
         options_input()
@@ -125,56 +135,101 @@ def options_input():
             co2_avr_list = []
 
             for row in data:
-                greenhousegas = float(row['co2'])
-                co2_avr_list.append(greenhousegas)
+                carbondioxide = float(row['co2'])
+                co2_avr_list.append(carbondioxide)
 
             avr_co2 = sum(co2_avr_list) / len(co2_avr_list)
             round_avr_co2 = round((avr_co2), 2)
             s_print('Average CO2 emissions: {} per economic unit'.format(round_avr_co2))
+
+            pddata = pd.read_csv('emissions.csv')
+
+            df = pd.DataFrame(pddata)
+
+            avr_df1 = df.drop((df[(df.co2 <= 0.44)]).index)
+            avr_df2 = avr_df1.drop((avr_df1[(avr_df1.co2 >= 0.64)]).index)
+
+            avr_df3 = pd.pivot_table(avr_df2, index=['year', 'industry'], values=['co2'])
+            print(avr_df3)
 
         avr_co2_run()
         options_input()
 
     elif option == '5':
         def max_ghg_run():
-            data = read_data()
+            # data = read_data()
+            #
+            # max_ghg_list = max(data, key=lambda x: x['ghg'])
+            #
+            # s_print('Max GHG emissions: {} per economic unit of {} in {}'.format(max_ghg_list['ghg'], max_ghg_list['industry'], max_ghg_list['year']))
 
-            max_ghg_list = max(data, key=lambda x: x['ghg'])
+            data = pd.read_csv('emissions.csv')
 
-            s_print('Max GHG emissions: {} per economic unit of {} in {}'.format(max_ghg_list['ghg'], max_ghg_list['industry'], max_ghg_list['year']))
+            df = pd.DataFrame(data)
+
+            maxghg_df = df.drop(df[df.ghg < 9].index)
+
+            df1 = pd.pivot_table(maxghg_df, index=['year', 'industry'], values=['ghg'])
+            print(df1)
 
         max_ghg_run()
         options_input()
 
     elif option == '6':
         def max_co2_run():
-            data = read_data()
+            # data = read_data()
+            #
+            # max_co2_list = max(data, key=lambda x: x['co2'])
+            #
+            # s_print('Max CO2 emissions: {} per economic unit of {} in {}'.format(max_co2_list['co2'], max_co2_list['industry'], max_co2_list['year']))
 
-            max_co2_list = max(data, key=lambda x: x['co2'])
+            data = pd.read_csv('emissions.csv')
 
-            s_print('Max CO2 emissions: {} per economic unit of {} in {}'.format(max_co2_list['co2'], max_co2_list['industry'], max_co2_list['year']))
+            df = pd.DataFrame(data)
+
+            maxco2_df = df.drop(df[df.co2 < 9].index)
+
+            df1 = pd.pivot_table(maxco2_df, index=['year', 'industry'], values=['co2'])
+            print(df1)
 
         max_co2_run()
         options_input()
 
     elif option == '7':
         def min_ghg_run():
-            data = read_data()
+            # data = read_data()
+            #
+            # min_ghg_list = min(data, key=lambda x: x['ghg'])
+            #
+            # s_print('Min GHG emissions: {} per economic unit of {} in {}'.format(min_ghg_list['ghg'], min_ghg_list['industry'], min_ghg_list['year']))
 
-            min_ghg_list = min(data, key=lambda x: x['ghg'])
+            data = pd.read_csv('emissions.csv')
 
-            s_print('Min GHG emissions: {} per economic unit of {} in {}'.format(min_ghg_list['ghg'], min_ghg_list['industry'], min_ghg_list['year']))
+            df = pd.DataFrame(data)
+
+            minghg_df = df.drop(df[df.ghg != 0].index)
+
+            df1 = pd.pivot_table(minghg_df, index=['year', 'industry'], values=['ghg'])
+            print(df1)
 
         min_ghg_run()
         options_input()
 
     elif option == '8':
         def min_co2_run():
-            data = read_data()
+            # data = read_data()
+            #
+            # min_co2_list = min(data, key=lambda x: x['co2'])
+            #
+            # s_print('Min CO2 emissions: {} per economic unit of {} in {}'.format(min_co2_list['co2'], min_co2_list['industry'], min_co2_list['year']))
+            data = pd.read_csv('emissions.csv')
 
-            min_co2_list = min(data, key=lambda x: x['co2'])
+            df = pd.DataFrame(data)
 
-            s_print('Min CO2 emissions: {} per economic unit of {} in {}'.format(min_co2_list['co2'], min_co2_list['industry'], min_co2_list['year']))
+            minco2_df = df.drop(df[df.co2 != 0].index)
+
+            df1 = pd.pivot_table(minco2_df, index=['year', 'industry'], values=['co2'])
+            print(df1)
 
         min_co2_run()
         options_input()
@@ -189,7 +244,7 @@ def options_input():
 
             df = pd.DataFrame(data)
             df1 = pd.pivot_table(df, index=['year'], values=['ghg', 'co2'], aggfunc=np.sum)
-            print(df)
+            print(df1)
 
             # Plot the data using bar() method
             df1.plot.bar(color=['b', 'g'])
