@@ -21,14 +21,35 @@ def read_data():
 
     return data #data from csv put into nested dictionary
 
+def cloud ():
+    print('     ********     ********      **********       *********     ***********')
+    print('  ***************************************************************************')
+    print(' *****************!    ! !-- !   /--  /--\  !\    /! !-- **********************')
+    print(' *****************! /\ ! !__ !   !   !    ! ! \  / ! !__       *****************')
+    print(' *****************!/  \! !__ !__ \__  \__/  !  \/  ! !__ *********************')
+    print(' *****************    ********* **********  *********  *******************')
+    print(' *****   *****        *****     *****       *****      *****    *****')
+    print(' ***     ***          ***       ***         ***        ***      ***')
+    print(' !*!     !*!          !*!       !*!         !*!        !*!      !*!')
+    print(' !*!     !*!          !*!       !*!         !*!        !*!      !*!')
+    print(' !*!     !*!          !*!       !*!         !*!        !*!      !*!')
+    print(' !*!     !*!          !*!       !*!         !*!        !*!      !*!')
+
+cloud()
+
 def interface ():
     s_print('Welcome! This is our Python project on CSV spreadsheet analysis.')
     s_print('Our topic is *Greenhouse Gas and CO2 Emissions Intensity by Industry* from the Office of National Statistics.')
     s_print('Our CSV contains greenhouse gas (GHG) and carbon dioxide (CO2) emissions output per unit of economic output.')
     s_print('Different industries, from retail to health care, were studied between 1990 to 2018, and 2019 provisionally.')
-    s_print('What would you like to know about Atmospheric emissions?')
-
+    s_print('What name shall I call you?. ')
 interface()
+
+def input_username():
+    username = input()
+    user = username
+    s_print('Hello {}! What would you like to know about Atmospheric emissions?'.format(user))
+input_username()
 
 def options ():
     print('1. Total GHG emissions per unit of economic output across all industries between 1990 and 2019.')
@@ -158,7 +179,6 @@ def options_input():
         s_print('Thank you for taking part. Goodbye!')
 
     else:
-        s_print('Please input 1 to 8. If you wish to exit, input Bye. ')
         options_input()
 
 options_input()
