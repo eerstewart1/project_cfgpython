@@ -63,10 +63,10 @@ def options ():
     print('6. Maximum CO2 emissions per unit of economic output across all industries between 1990 and 2019.')
     print('7. Minimum GHG emissions per unit of economic output across all industries between 1990 and 2019.')
     print('8. Minimum CO2 emissions per unit of economic output across all industries between 1990 and 2019.')
-    print('9. Table and graph showing GHG and CO2 emissions by year')
-    print('10. Table and graph showing GHG and CO2 emissions by industry')
+    print('9. Table and graph showing GHG and CO2 emissions by Year')
+    print('10. Table and graph showing GHG and CO2 emissions by Industry')
     print('11. Table and graph showing GHG and CO2 emissions of Agriculture by year')
-    print('12. Table and graph showing GHG and CO2 emissions in 2019 by industry')
+    print('12. Table and graph showing GHG and CO2 emissions in 2019 by Industry')
 options()
 
 def options_input():
