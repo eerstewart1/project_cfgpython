@@ -1,0 +1,35 @@
+import matplotlib.pyplot as plt
+import pandas as pd
+
+# Initialize the lists for X and Y
+data = pd.read_csv('emissions.csv')
+
+df = pd.DataFrame(data)
+
+X = list(df.iloc[:, 0])
+Y = list(df.iloc[:, 2])
+
+# Plot the data using bar() method
+plt.bar(X, Y, color='b')
+plt.title("Emissions")
+plt.xlabel("Year")
+plt.ylabel("Green house emission")
+
+# Show the plot
+plt.show()
+
+
+## total sales per month 
+#diagram for the sales per month
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+x = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'aug', 'nov', 'dec']
+y = [6226, 1521, 1842, 2051, 1728, 2138, 7479, 4434, 3615, 5472, 7224, 1812]
+
+
+ax = sns.stripplot(x, y);
+ax.set(xlabel='Months', ylabel='Sales')
+
+plt.title('Sales Graph');
+plt.show()
