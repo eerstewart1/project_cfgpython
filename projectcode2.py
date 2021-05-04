@@ -41,6 +41,8 @@ cloud()
 def interface ():
     s_print('Welcome! This is our Python project on CSV spreadsheet analysis.')
     s_print('Our topic is *Greenhouse Gas and CO2 Emissions Intensity by Industry* from the Office of National Statistics.')
+    s_print('Greenhouse Gases are any gases that absorbs and emits heat into the atmosphere, keeping it warmer than normal.')
+    s_print('Carbon dioxide is the most common greenhouse gas that humans emit by quantity and impact on global warming.')
     s_print('Our CSV contains greenhouse gas (GHG) and carbon dioxide (CO2) emissions output per unit of economic output.')
     s_print('Different industries, from retail to health care, were studied between 1990 to 2018, and 2019 provisionally.')
     s_print('What name shall I call you? ')
@@ -99,6 +101,10 @@ def options_input():
             total_co2 = sum(co2_total_list)
             round_total_co2 = round((total_co2), 2)
             s_print('Total CO2 emissions: {} per 600 recorded economic units across all industries between 1990 to 2019.'.format(round_total_co2))
+
+            percent_co2 = int((100 / 536.02) * 321.22)
+
+            s_print('That means {}% of GHG between 1990 and 2019 was C02.'.format(percent_co2))
 
         total_co2_run()
         options_input()
