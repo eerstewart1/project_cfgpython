@@ -1,5 +1,6 @@
 import sys
 import time
+import pandas as pd
 from csv import DictReader
 
 #slow print
@@ -42,7 +43,7 @@ def interface ():
     s_print('Our topic is *Greenhouse Gas and CO2 Emissions Intensity by Industry* from the Office of National Statistics.')
     s_print('Our CSV contains greenhouse gas (GHG) and carbon dioxide (CO2) emissions output per unit of economic output.')
     s_print('Different industries, from retail to health care, were studied between 1990 to 2018, and 2019 provisionally.')
-    s_print('What name shall I call you?. ')
+    s_print('What name shall I call you? ')
 interface()
 
 def input_username():
@@ -60,7 +61,10 @@ def options ():
     print('6. Maximum CO2 emissions per unit of economic output across all industries between 1990 and 2019.')
     print('7. Minimum GHG emissions per unit of economic output across all industries between 1990 and 2019.')
     print('8. Minimum CO2 emissions per unit of economic output across all industries between 1990 and 2019.')
-
+    print('9. Table and graph showing GHG and CO2 emissions by year')
+    print('10. Table and graph showing GHG and CO2 emissions by industry')
+    print('11. Table and graph showing GHG and CO2 emissions of Agriculture by year')
+    print('12. Table and graph showing GHG and CO2 emissions in 2019 by industry')
 options()
 
 def options_input():
@@ -173,6 +177,109 @@ def options_input():
             s_print('Min CO2 emissions: {} per economic unit of {} in {}'.format(min_co2_list['co2'], min_co2_list['industry'], min_co2_list['year']))
 
         min_co2_run()
+        options_input()
+
+    elif option == '9':
+        def graph_year_run():
+            # Initialize the lists for X and Y
+            import matplotlib.pyplot as plt
+            import numpy as np
+
+            data = pd.read_csv('emissions.csv')
+
+            df = pd.DataFrame(data)
+            df1 = pd.pivot_table(df, index=['year'], values=['ghg', 'co2'], aggfunc=np.sum)
+            print(df)
+
+            # Plot the data using bar() method
+            df1.plot.bar(color=['b', 'g'])
+            plt.title("GHG and CO2 Emissions by Year")
+            plt.xlabel("Year")
+            plt.ylabel("Emissions output")
+
+            # Show the plot
+            plt.show()
+
+        graph_year_run()
+        options_input()
+
+    elif option == '10':
+        def graph_industry_run():
+            # Initialize the lists for X and Y
+            import matplotlib.pyplot as plt
+            import numpy as np
+
+            data = pd.read_csv('emissions.csv')
+
+            df = pd.DataFrame(data)
+
+            df1 = pd.pivot_table(df, index=['industry'],values=['ghg', 'co2'],aggfunc=np.sum)
+            print(df1)
+
+            # Plot the data using bar() method
+            df1.plot.bar(color=['b', 'g'])
+            plt.title("GHG and CO2 Emissions by Industry")
+            plt.xlabel("Industry")
+            plt.ylabel("Emissions output")
+
+            # Show the plot
+            plt.show()
+
+        graph_industry_run()
+        options_input()
+
+    elif option == '11':
+        def graph_agriculture_run():
+            # Initialize the lists for X and Y
+            import matplotlib.pyplot as plt
+            import numpy as np
+
+            data = pd.read_csv('emissions.csv')
+
+            df = pd.DataFrame(data)
+
+            agriculture_df = df.drop(df[df.industry != 'agriculture'].index)
+            print(agriculture_df)
+
+            df1 = pd.pivot_table(agriculture_df, index=['year'],values=['ghg', 'co2'],aggfunc=np.sum)
+
+            # Plot the data using bar() method
+            df1.plot.bar(color=['b', 'g'])
+            plt.title("GHG and CO2 Emissions in Agriculture")
+            plt.xlabel("Year")
+            plt.ylabel("Emissions output")
+
+            # Show the plot
+            plt.show()
+
+        graph_agriculture_run()
+        options_input()
+
+    elif option == '12':
+        def graph_recent_run():
+            # Initialize the lists for X and Y
+            import matplotlib.pyplot as plt
+            import numpy as np
+
+            data = pd.read_csv('emissions.csv')
+
+            df = pd.DataFrame(data)
+
+            recent_df = df.drop(df[df['year'] != 2019].index)
+            print(recent_df)
+
+            df1 = pd.pivot_table(recent_df, index=['industry'],values=['ghg', 'co2'],aggfunc=np.sum)
+
+            # Plot the data using bar() method
+            df1.plot.bar(color=['b', 'g'])
+            plt.title("GHG and CO2 Emissions in 2019")
+            plt.xlabel("Industry")
+            plt.ylabel("Emissions output")
+
+            # Show the plot
+            plt.show()
+
+        graph_recent_run()
         options_input()
 
     elif option == 'Bye':
