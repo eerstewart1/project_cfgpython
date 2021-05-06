@@ -52,6 +52,7 @@ def input_username():
     username = input()
     user = username
     s_print('Hello {}! What would you like to know about Atmospheric emissions?'.format(user))
+    return user
 input_username()
 
 def options ():
@@ -120,7 +121,7 @@ def options_input():
 
             avr_ghg = sum(ghg_avr_list) / len(ghg_avr_list)
             round_avr_ghg = round((avr_ghg), 2)
-            s_print('Average greenhouse gas emissions: {} per economic unit'.format(round_avr_ghg))
+            s_print('Average GHG emissions: {} per economic unit'.format(round_avr_ghg))
 
             pddata = pd.read_csv('emissions.csv')
 
@@ -167,7 +168,7 @@ def options_input():
             #
             # max_ghg_list = max(data, key=lambda x: x['ghg'])
             #
-            # s_print('Max GHG emissions: {} per economic unit of {} in {}'.format(max_ghg_list['ghg'], max_ghg_list['industry'], max_ghg_list['year']))
+            s_print('Max GHG emissions:')
 
             data = pd.read_csv('emissions.csv')
 
@@ -187,7 +188,7 @@ def options_input():
             #
             # max_co2_list = max(data, key=lambda x: x['co2'])
             #
-            # s_print('Max CO2 emissions: {} per economic unit of {} in {}'.format(max_co2_list['co2'], max_co2_list['industry'], max_co2_list['year']))
+            s_print('Max CO2 emissions:')
 
             data = pd.read_csv('emissions.csv')
 
@@ -207,7 +208,7 @@ def options_input():
             #
             # min_ghg_list = min(data, key=lambda x: x['ghg'])
             #
-            # s_print('Min GHG emissions: {} per economic unit of {} in {}'.format(min_ghg_list['ghg'], min_ghg_list['industry'], min_ghg_list['year']))
+            s_print('Min GHG emissions:')
 
             data = pd.read_csv('emissions.csv')
 
@@ -227,7 +228,8 @@ def options_input():
             #
             # min_co2_list = min(data, key=lambda x: x['co2'])
             #
-            # s_print('Min CO2 emissions: {} per economic unit of {} in {}'.format(min_co2_list['co2'], min_co2_list['industry'], min_co2_list['year']))
+            s_print('Min CO2 emissions:')
+
             data = pd.read_csv('emissions.csv')
 
             df = pd.DataFrame(data)
