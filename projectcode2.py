@@ -39,7 +39,7 @@ def cloud ():
 cloud()
 
 def interface ():
-    s_print('Welcome! This is our (Harriet, Prati and Lizzie) Python project on CSV spreadsheet analysis.')
+    s_print('Welcome! This is our Python project on CSV spreadsheet analysis.')
     s_print('Our topic is *Greenhouse Gas and CO2 Emissions Intensity by Industry* from the Office of National Statistics.')
     s_print('Greenhouse Gases are any gases that absorbs and emits heat into the atmosphere, keeping it warmer than normal.')
     s_print('Carbon dioxide is the most common greenhouse gas that humans emit by quantity and impact on global warming.')
