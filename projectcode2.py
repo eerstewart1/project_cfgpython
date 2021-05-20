@@ -66,12 +66,12 @@ def options ():
     print('8. Minimum CO2 emissions per unit of economic output across all industries between 1990 and 2019.')
     print('9. Table and graph showing GHG and CO2 emissions by Year')
     print('10. Table and graph showing GHG and CO2 emissions by Industry')
-    print('11. Table and graph showing GHG and CO2 emissions of Agriculture by year')
+    print('11. Table and graph showing GHG and CO2 emissions of Agriculture by Year')
     print('12. Table and graph showing GHG and CO2 emissions in 2019 by Industry')
 options()
 
 def options_input():
-    print('Please input 1 to 8. If you wish to exit, input Bye. ')
+    print('Please input 1 to 12. If you wish to exit, input Bye. ')
     option = input()
 
     if option == '1':
